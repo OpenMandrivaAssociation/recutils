@@ -1,6 +1,6 @@
 Name:		recutils
 Summary:	A set of tools and librairies to access recfiles
-Version:	1.1
+Version:	1.2
 Release:	%mkrel 1
 URL:		http://www.gnu.org/software/recutils
 License:	GPLv3+
@@ -35,3 +35,7 @@ rm -fr %buildroot%_libdir/*.so %buildroot%_libdir/*.*a %buildroot%_includedir
 %{_datadir}/%{name}
 %{_mandir}/man1/*
 %{_infodir}/*
+%{_datadir}/locale/de/LC_MESSAGES/recutils.mo
+%{_datadir}/locale/fi/LC_MESSAGES/recutils.mo
+%{_datadir}/locale/nl/LC_MESSAGES/recutils.mo
+%{_datadir}/locale/sv/LC_MESSAGES/recutils.mo

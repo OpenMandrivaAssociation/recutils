@@ -1,12 +1,11 @@
 Name:		recutils
 Summary:	A set of tools and librairies to access recfiles
-Version:	1.2
-Release:	%mkrel 1
+Version:	1.5
+Release:	1
 URL:		http://www.gnu.org/software/recutils
 License:	GPLv3+
 Group:		Databases
 Source0:	ftp://ftp.gnu.org/gnu/recutils/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 BuildRequires:	curl-devel
 
 %description
@@ -22,7 +21,6 @@ arbitrary number of named fields.
 %make
 
 %install
-rm -fr %buildroot
 %makeinstall_std
 %find_lang %name
 
@@ -33,6 +31,7 @@ rm -fr %buildroot%_libdir/*.so %buildroot%_libdir/*.*a %buildroot%_includedir
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_datadir}/%{name}
+%{_datadir}/emacs/site-lisp/*.el
 %{_mandir}/man1/*
 %{_infodir}/*
 %{_datadir}/locale/de/LC_MESSAGES/recutils.mo

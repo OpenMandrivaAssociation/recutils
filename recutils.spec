@@ -1,11 +1,12 @@
 Name:		recutils
 Summary:	A set of tools and librairies to access recfiles
-Version:	1.5
-Release:	1
+Version:	1.2
+Release:	%mkrel 1
 URL:		http://www.gnu.org/software/recutils
 License:	GPLv3+
 Group:		Databases
 Source0:	ftp://ftp.gnu.org/gnu/recutils/%{name}-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 BuildRequires:	curl-devel
 
 %description
@@ -21,6 +22,7 @@ arbitrary number of named fields.
 %make
 
 %install
+rm -fr %buildroot
 %makeinstall_std
 %find_lang %name
 
@@ -31,10 +33,25 @@ rm -fr %buildroot%_libdir/*.so %buildroot%_libdir/*.*a %buildroot%_includedir
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_datadir}/%{name}
-%{_datadir}/emacs/site-lisp/*.el
 %{_mandir}/man1/*
 %{_infodir}/*
 %{_datadir}/locale/de/LC_MESSAGES/recutils.mo
 %{_datadir}/locale/fi/LC_MESSAGES/recutils.mo
 %{_datadir}/locale/nl/LC_MESSAGES/recutils.mo
 %{_datadir}/locale/sv/LC_MESSAGES/recutils.mo
+
+
+%changelog
+* Sun Feb 06 2011 Sandro Cazzaniga <kharec@mandriva.org> 1.2-1mdv2011.0
++ Revision: 636380
+- update to 1.2
+- update file list with files in %%{_datadir}
+
+* Sun Dec 26 2010 Funda Wang <fwang@mandriva.org> 1.1-1mdv2011.0
++ Revision: 625204
+- new version 1.1
+
+* Tue Dec 07 2010 Sandro Cazzaniga <kharec@mandriva.org> 1.0-1mdv2011.0
++ Revision: 614430
+- import recutils
+

@@ -1,11 +1,11 @@
 Name:		recutils
 Summary:	A set of tools and librairies to access recfiles
-Version:	1.2
-Release:	2
+Version:	1.5
+Release:	1
 URL:		http://www.gnu.org/software/recutils
 License:	GPLv3+
 Group:		Databases
-Source0:	ftp://ftp.gnu.org/gnu/recutils/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.gnu.org:21/gnu/recutils/%{name}-%{version}.tar.gz
 BuildRequires:	curl-devel
 
 %description
@@ -52,4 +52,5 @@ rm -fr %buildroot%_libdir/*.so %buildroot%_libdir/*.*a %buildroot%_includedir
 * Tue Dec 07 2010 Sandro Cazzaniga <kharec@mandriva.org> 1.0-1mdv2011.0
 + Revision: 614430
 - import recutils
+
 

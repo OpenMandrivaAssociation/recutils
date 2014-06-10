@@ -1,57 +1,67 @@
 Name:		recutils
-Summary:	A set of tools and librairies to access recfiles
-Version:	1.5
+Version:	1.7
 Release:	1
-URL:		http://www.gnu.org/software/recutils
-License:	GPLv3+
+Summary:	A set of tools to access GNU recfile databases
 Group:		Databases
-Source0:	ftp://ftp.gnu.org:21/gnu/recutils/%{name}-%{version}.tar.gz
-BuildRequires:	curl-devel
+License:	GPLv3+
+URL:		http://www.gnu.org/software/recutils/
+Source0:	ftp://ftp.gnu.org/gnu/recutils/%{name}-%{version}.tar.gz
+#Source1:	rec-mode-init.el
+Patch0:		recutils-shared-lib-calls-exit.patch
+Patch1:		recutils-Wformat.patch
+BuildRequires:	gettext
+BuildRequires:	autoconf
+BuildRequires:	chrpath
+BuildRequires:	libgcrypt-devel
+BuildRequires:	help2man
+#BuildRequires:	mdbtools-devel
 
 %description
-GNU Recutils is a set of tools and libraries to access human-editable,
+Recutils is a set of tools and libraries to access human-editable,
 text-based databases called recfiles. The data is stored as a sequence
-of records, each record containing an arbitrary number of named fields.
+of records, each record containing an arbitrary number of named
+fields.
+
+%package devel
+Summary:	Libraries and header files for recutils
+
+Group:		Development/C
+Requires:	%{name} = %{EVRD}
+
+%description devel
+Libraries and header files for recutils
 
 %prep
 %setup -q
+%patch0 -p1 -b .shared-lib-calls-exit
+%patch1 -p1 -b .Wformat
 
 %build
-%configure2_5x --disable-static --disable-rpath
+autoreconf -fi
+%configure --disable-static --disable-rpath
 %make
 
+%check
+make check
+
 %install
-%makeinstall_std
-%find_lang %name
+%makeinstall_std INSTALL="install -p"
 
-rm -fr %{buildroot}%{_libdir}/*.so %{buildroot}%{_libdir}/*.*a %{buildroot}%{_includedir}
+rm -f %{buildroot}%{_infodir}/dir
 
-%files
-%doc ABOUT-NLS README AUTHORS ChangeLog 
-%{_bindir}/*
+chrpath --delete %{buildroot}%{_bindir}/*
+
+%find_lang %{name}
+
+%files -f %{name}.lang
+%doc AUTHORS COPYING ChangeLog NEWS README
 %{_libdir}/*.so.*
-%{_datadir}/%{name}
-%{_datadir}/emacs/site-lisp/*.el
+%{_bindir}/*
 %{_mandir}/man1/*
-%{_infodir}/*
-%{_datadir}/locale/de/LC_MESSAGES/recutils.mo
-%{_datadir}/locale/fi/LC_MESSAGES/recutils.mo
-%{_datadir}/locale/nl/LC_MESSAGES/recutils.mo
-%{_datadir}/locale/sv/LC_MESSAGES/recutils.mo
+%{_datadir}/recutils
+%{_datadir}/emacs/site-lisp/*
+%{_infodir}/*.info*
 
-
-%changelog
-* Sun Feb 06 2011 Sandro Cazzaniga <kharec@mandriva.org> 1.2-1mdv2011.0
-+ Revision: 636380
-- update to 1.2
-- update file list with files in %%{_datadir}
-
-* Sun Dec 26 2010 Funda Wang <fwang@mandriva.org> 1.1-1mdv2011.0
-+ Revision: 625204
-- new version 1.1
-
-* Tue Dec 07 2010 Sandro Cazzaniga <kharec@mandriva.org> 1.0-1mdv2011.0
-+ Revision: 614430
-- import recutils
-
-
+%files devel
+%{_includedir}/rec.h
+%{_libdir}/*.so

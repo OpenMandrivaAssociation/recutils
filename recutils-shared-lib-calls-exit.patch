@@ -1,0 +1,24 @@
+diff -ru recutils-1.3.orig/src/rec-sex.c recutils-1.3/src/rec-sex.c
+--- recutils-1.3.orig/src/rec-sex.c	2011-01-18 06:04:35.000000000 +0900
++++ recutils-1.3/src/rec-sex.c	2011-10-18 14:59:04.018011119 +0900
+@@ -400,7 +400,7 @@
+     case REC_SEX_NOVAL:
+       {
+         fprintf (stderr, "Application bug: REC_SEX_NOVAL node found.\nPlease report this!\n");
+-        exit (EXIT_FAILURE);
++        abort ();
+         break;
+       }
+       /* Operations.  */
+diff -ru recutils-1.3.orig/src/rec-types.c recutils-1.3/src/rec-types.c
+--- recutils-1.3.orig/src/rec-types.c	2011-01-31 05:14:23.000000000 +0900
++++ recutils-1.3/src/rec-types.c	2011-10-18 14:59:37.154198002 +0900
+@@ -426,7 +426,7 @@
+         /* This point should not be reached.  */
+         fprintf (stderr,
+                  _("internal error: rec-types: got REC_TYPE_NONE from rec_type_parse_type_kind() in rec_type_new().\n"));
+-        exit (EXIT_FAILURE);
++        abort ();
+         break;
+       }
+     }

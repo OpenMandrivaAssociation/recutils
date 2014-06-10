@@ -1,0 +1,42 @@
+From 090c51100809b4c62d9e53795a034792232dc2cf Mon Sep 17 00:00:00 2001
+From: Daiki Ueno <ueno@gnu.org>
+Date: Thu, 27 Mar 2014 19:12:42 +0900
+Subject: [PATCH] utils: silence compiler warnings with -Wformat
+
+---
+ utils/csv2rec.c | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
+
+diff --git a/utils/csv2rec.c b/utils/csv2rec.c
+index da38394..5b8806d 100644
+--- a/utils/csv2rec.c
++++ b/utils/csv2rec.c
+@@ -248,7 +248,6 @@ field_cb (void *s, size_t len, void *data)
+         {
+           if (ctx->num_fields > ctx->num_field_names)
+             {
+-              char *errmsg = NULL;
+               char *source = csv2rec_csv_file;
+ 
+               if (!source)
+@@ -256,13 +255,10 @@ field_cb (void *s, size_t len, void *data)
+                   source = "stdin";
+                 }
+ 
+-              if (!asprintf (&errmsg,
+-                             _("%s: %d: this line contains %d fields, but %d header fields were read\n"),
+-                             source,
+-                             ctx->lineno, ctx->num_field_names, ctx->num_fields))
+-                recutl_out_of_memory ();
+-
+-              fprintf (stderr, errmsg);
++              fprintf (stderr,
++                       _("%s: %lu: this line contains %lu fields, but %lu header fields were read\n"),
++                       source,
++                       ctx->lineno, ctx->num_field_names, ctx->num_fields);
+               exit (EXIT_FAILURE);
+             }
+           field = rec_field_new (ctx->field_names[ctx->num_fields], str);
+-- 
+1.8.4.2
+

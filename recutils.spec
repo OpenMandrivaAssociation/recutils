@@ -10,11 +10,13 @@ Source0:	ftp://ftp.gnu.org/gnu/recutils/%{name}-%{version}.tar.gz
 Patch0:		recutils-shared-lib-calls-exit.patch
 Patch1:		recutils-Wformat.patch
 BuildRequires:	gettext
+BuildRequires:	gettext-devel
 BuildRequires:	autoconf
 BuildRequires:	chrpath
 BuildRequires:	libgcrypt-devel
 BuildRequires:	help2man
-#BuildRequires:	mdbtools-devel
+BuildRequires:	mdbtools-devel
+BuildRequires:	texinfo
 
 %description
 Recutils is a set of tools and libraries to access human-editable,

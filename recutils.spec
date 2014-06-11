@@ -15,7 +15,8 @@ BuildRequires:	autoconf
 BuildRequires:	chrpath
 BuildRequires:	libgcrypt-devel
 BuildRequires:	help2man
-BuildRequires:	mdbtools-devel
+# TODO: Port from ROSA to add mdb support
+#BuildRequires:	mdbtools-devel
 BuildRequires:	texinfo
 
 %description

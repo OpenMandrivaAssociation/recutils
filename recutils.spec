@@ -1,6 +1,6 @@
 Name:		recutils
 Version:	1.7
-Release:	1
+Release:	2
 Summary:	A set of tools to access GNU recfile databases
 Group:		Databases
 License:	GPLv3+

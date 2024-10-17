@@ -4,7 +4,7 @@ Release:	2
 Summary:	A set of tools to access GNU recfile databases
 Group:		Databases
 License:	GPLv3+
-URL:		http://www.gnu.org/software/recutils/
+URL:		https://www.gnu.org/software/recutils/
 Source0:	ftp://ftp.gnu.org/gnu/recutils/%{name}-%{version}.tar.gz
 #Source1:	rec-mode-init.el
 Patch0:		recutils-shared-lib-calls-exit.patch

@@ -9,6 +9,10 @@ Source0:	ftp://ftp.gnu.org/gnu/recutils/%{name}-%{version}.tar.gz
 #Source1:	rec-mode-init.el
 Patch0:		recutils-shared-lib-calls-exit.patch
 Patch1:		recutils-Wformat.patch
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gettext
 BuildRequires:	gettext-devel
 BuildRequires:	autoconf
